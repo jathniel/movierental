@@ -56,4 +56,5 @@ typings/
 
 # dotenv environment variables file
 .env
-
+#sass file
+.sass-lint.yml
