@@ -4,6 +4,7 @@
   "description": "Express base movie rental",
   "main": "index.js",
   "scripts": {
+    "prerun": "babel-node loadTestData.js",
     "start": "nodemon --exec babel-node server.js --ignore public/",
     "dev": "webpack -wd"
   },
