@@ -1,13 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-const App = () => {
-  return (
-    <h2>
-      Hello React component
-    </h2>
-  );
-};
+import Login from './components/LoginPage';
 ReactDom.render(
-  <App />,
+  <Login />,
   document.getElementById('root')
 );
