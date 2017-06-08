@@ -1,5 +1,6 @@
-import config from './config/config.js';
+import config from './config/config';
 import apiRouter from './api';
+import router from './config/routes';
 import sassMiddleware from 'node-sass-middleware';
 import path from 'path';
 
@@ -12,11 +13,8 @@ app.use(sassMiddleware({
 }));
 
 app.set('view engine', 'ejs');
-
-app.get('/', function (req, res) {
-  res.render('index');
-});
 app.use('/api', apiRouter);
+app.use('/', router);
 app.use(express.static('public'));
 app.listen(config.port, () => {
   console.info('Express listening on port ', config.port);

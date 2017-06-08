@@ -3,6 +3,12 @@
 
 .header {
   padding: 15px; }
+  .header.stick-top {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1; }
   .header-logo {
     font-size: 24px;
     color: #fff; }
@@ -13,7 +19,8 @@
     padding: 7px 17px;
     font-weight: 400;
     border-radius: 3px;
-    font-size: 16px; }
+    font-size: 16px;
+    cursor: pointer; }
     .header-btn:hover, .header-btn:visited {
       text-decoration: none;
       color: #fff;
@@ -22,6 +29,51 @@
 .home .banner {
   background-image: url("/images/bg.jpg");
   background-size: cover;
+  background-attachment: fixed;
   background-color: #333;
-  height: 100vh;
-  margin-top: -64px; }
+  height: 100vh; }
+  .home .banner .slogan {
+    margin-top: 100px;
+    padding: 80px 0 30px;
+    color: white; }
+    .home .banner .slogan h2 {
+      font-size: 2.8em;
+      line-height: normal;
+      text-transform: uppercase; }
+
+.home .feature {
+  background: #333; }
+  .home .feature-block {
+    color: #ffffff;
+    padding: 30px; }
+    .home .feature-block h3 {
+      font-size: 6em; }
+    .home .feature-block h6 {
+      margin-top: 30px;
+      font-size: 16px; }
+
+.home .about {
+  background: #ffffff;
+  padding: 20px;
+  margin-top: 50px; }
+  .home .about img {
+    max-width: 80%;
+    margin-top: 50px; }
+  .home .about h2 {
+    font-size: 4em;
+    color: #333;
+    margin-bottom: 40px;
+    margin-top: 0px; }
+  .home .about p {
+    color: #333;
+    font-size: 22px;
+    line-height: 34px;
+    text-align: left; }
+
+.footer {
+  background: #283645;
+  color: #707E8C;
+  padding: 20px; }
+
+.margin-0 {
+  margin: 0 !important; }
