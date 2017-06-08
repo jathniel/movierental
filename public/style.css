@@ -1,2 +1,27 @@
-body {
-  background: #333; }
+* {
+  font-family: 'Helvetica Neue'; }
+
+.header {
+  padding: 15px; }
+  .header-logo {
+    font-size: 24px;
+    color: #fff; }
+  .header-btn {
+    color: #fff;
+    background-color: #e50914;
+    line-height: normal;
+    padding: 7px 17px;
+    font-weight: 400;
+    border-radius: 3px;
+    font-size: 16px; }
+    .header-btn:hover, .header-btn:visited {
+      text-decoration: none;
+      color: #fff;
+      background: #f6121d; }
+
+.home .banner {
+  background-image: url("/images/bg.jpg");
+  background-size: cover;
+  background-color: #333;
+  height: 100vh;
+  margin-top: -64px; }
