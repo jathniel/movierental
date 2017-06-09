@@ -110,9 +110,42 @@
     text-align:left;
   }
 }
+.movie {
+  min-height: 100vh;
+  .search-bar {
+    height: 70vh;
+    background-image: url('/images/movie.png');
+    background-size: cover;
+    background-position: center center;
+    background-color: #333;
+  }
+  .search-container {
+    margin: 30vh auto 0px;
+    max-width: 582px;
+    width: 100%;
+  }
+}
 .margin-0 {
   margin: 0 !important;
 }
+.error {
+  color: #ff0000;
+}
 .btn-lg, .input-lg {
   font-size: 15px;
+}
+.wrapper {
+    position: relative;
+}
+
+.wrapper:before {
+  font-family: 'FontAwesome';
+  color: #888;
+  position: absolute;
+  right: 15px;
+  margin-top: 5px;
+  content: "\f002";
+  float: right;
+  z-index: 1;
+  font-size: 1.7em;
 }

@@ -1,4 +1,8 @@
 <header class="header stick-top">
   <span class="header-logo">Rental's</span>
-  <a class="header-btn pull-right" href="/login">Sign In</a>
+  <% if(locals.username){ %>
+    <a class="header-btn pull-right" href="/login">Sign Out</a>
+  <% } else{ %>
+      <a class="header-btn pull-right" href="/login">Sign In</a>
+  <% } %>
 </header>
