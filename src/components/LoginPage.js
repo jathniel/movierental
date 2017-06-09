@@ -17,8 +17,10 @@ class Login extends Component {
     api.checkLogin(username, password)
     .then(() => {
       this.setState({error: false});
+      window.location = '/movies';
     })
-    .catch(() => {
+    .catch((e) => {
+      console.error(e);
       this.setState({error: true});
     });
   };

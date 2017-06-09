@@ -8,5 +8,13 @@ router.get('/', (req, res)=> {
 router.get('/login', (req, res)=> {
   res.render('login');
 });
+router.get('/movies', (req, res)=> {
+  if(req.session.user) {
+    res.render('movies', req.session.user);
+  } else {
+    res.redirect('/');
+  }
+});
+
 
 export default router;
