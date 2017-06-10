@@ -8,8 +8,17 @@ MongoClient.connect(config.mongodbUri, (err, db) => {
 
   mdb = db;
 });
-export const authenticate = (username, password) => {
+const authenticate = (username, password) => {
   return mdb.collection('user')
      .findOne({ username, password })
      .then(result => result);
+};
+const findMovies = () => {
+  return mdb.collection('Movies')
+     .find().toArray()
+     .then(result => result);
+};
+export default {
+  authenticate,
+  findMovies
 };

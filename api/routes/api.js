@@ -1,5 +1,5 @@
 import express from 'express';
-import { authenticate } from '../model';
+import model from '../model';
 
 
 const apiRouter = express.Router();
@@ -7,11 +7,12 @@ const apiRouter = express.Router();
 apiRouter.get('/', (req, res)=> {
   res.send({data:[]});
 });
+
 apiRouter.post('/login', (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
   if(username && password) {
-    authenticate(username, password)
+    model.authenticate(username, password)
     .then(user => {
       if(user) {
         req.session.user = user;
@@ -24,5 +25,13 @@ apiRouter.post('/login', (req, res) => {
   } else {
     res.send('failed');
   }
+});
+
+apiRouter.get('/movies', (req, res)=> {
+  model.findMovies()
+  .then(result => {
+    res.status(200).send(result);
+  })
+  .catch(() => res.status(403).send('failed'));
 });
 export default apiRouter;
