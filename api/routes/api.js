@@ -16,7 +16,7 @@ apiRouter.post('/login', (req, res) => {
     .then(user => {
       if(user) {
         req.session.user = user;
-        res.status(200).send('ok');
+        res.status(200).send(user.role);
       } else {
         res.status(404).send('failed');
       }
@@ -35,14 +35,25 @@ apiRouter.get('/movies', (req, res) => {
   .catch(() => res.status(403).send('failed'));
 });
 apiRouter.get('/movies/:id', (req, res) => {
-
-  model.findMoviesById(req.params.id)
-  .then(result => {
-    model.findCastByMovieId(req.params.id).then(resp => {
-      result.cast = resp;
-      res.status(200).send(result);
+  if(req.session.user.id) {
+    model.findMoviesById(req.params.id)
+    .then(result => {
+      model.findCastByMovieId(req.params.id).then(resp => {
+        result.cast = resp;
+        model.checkRented(req.params.id, req.session.user.id).then(rented => {
+          if(rented) {
+            result.isRented = true;
+            res.status(200).send(result);
+          } else {
+            result.isRented = false;
+            res.status(200).send(result);
+          }
+        });
+      });
     }).catch(() => res.status(403).send('failed'));
-  }).catch(() => res.status(403).send('failed'));
+  } else {
+    res.status(403).send('failed');
+  }
 });
 apiRouter.post('/movies', (req, res)=> {
   const search = req.body.search;
@@ -52,5 +63,20 @@ apiRouter.post('/movies', (req, res)=> {
     res.status(200).send(result);
   })
   .catch(() => res.status(403).send('failed'));
+});
+apiRouter.post('/rent', (req, res)=> {
+  const movieId = req.body.movieId;
+  const user = req.session.user.id;
+  const quantity = req.body.quantity - 1;
+  if(user && movieId) {
+    model.rentMovie(movieId, user, quantity)
+    .then(result => {
+      res.status(200).send(result);
+    })
+    .catch(() => res.status(403).send('failed'));
+  } else {
+    res.status(403).send('failed');
+  }
+
 });
 export default apiRouter;

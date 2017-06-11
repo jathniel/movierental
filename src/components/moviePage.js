@@ -71,10 +71,19 @@ class MoviePage extends Component {
       selectedMovie: null
     });
   };
+  rentMovie = (movieId, quantity) => {
+    return api.rentMovie(movieId, quantity)
+    .then(() => {
+      let selectedMovie = this.state.selectedMovie;
+      selectedMovie['quantity'] = this.state.selectedMovie.quantity - 1;
+      selectedMovie['isRented'] = true; 
+      this.setState(selectedMovie);
+    });
+  }
   render() {
     return(
       <div className="movie">
-        {this.state.selectedMovie ? <MoviePreview {...this.state.selectedMovie} removePreview={this.removePreview}/> : null }
+        {this.state.selectedMovie ? <MoviePreview {...this.state.selectedMovie} rentMovie={this.rentMovie} removePreview={this.removePreview}/> : null }
         <div className="search-bar">
           <div className="container">
             <div className="search-container">

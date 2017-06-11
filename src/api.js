@@ -16,3 +16,7 @@ export const searchMovies = (search, limit) => {
   return axios.post('/api/movies', {search, limit})
               .then(resp => resp.data);
 };
+export const rentMovie = (movieId, quantity) => {
+  return axios.post('/api/rent', {movieId, quantity})
+              .then(resp => resp.data);
+};

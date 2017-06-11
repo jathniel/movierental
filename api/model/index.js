@@ -37,10 +37,24 @@ const findCastByMovieId = (movieId) => {
   }).toArray()
   .then(result => result);
 };
+const rentMovie = (movieId, userId, quantity) => {
+  return mdb.collection('rent').insertOne({movieId, userId}).then(() => {
+    return mdb.collection('Movies')
+    .updateOne({id:movieId},{$set:{quantity}})
+    .then(result => result);
+  });
+};
+const checkRented = (movieId, userId) => {
+  return mdb.collection('rent')
+     .findOne({movieId: Number(movieId), userId})
+     .then(result => result);
+};
 export default {
   authenticate,
   findMovies,
   searchMovies,
   findMoviesById,
-  findCastByMovieId
+  findCastByMovieId,
+  rentMovie,
+  checkRented
 };

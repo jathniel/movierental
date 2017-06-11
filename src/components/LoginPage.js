@@ -15,9 +15,13 @@ class Login extends Component {
   };
   checkLogin = (username, password) => {
     api.checkLogin(username, password)
-    .then(() => {
+    .then((resp) => {
       this.setState({error: false});
-      window.location = '/movies';
+      if(resp === 'user') {
+        window.location = '/movies';
+      }else {
+        window.location = 'admin';
+      }
     })
     .catch((e) => {
       console.error(e);
