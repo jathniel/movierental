@@ -15,10 +15,32 @@ const authenticate = (username, password) => {
 };
 const findMovies = () => {
   return mdb.collection('Movies')
-     .find().toArray()
-     .then(result => result);
+  .find().limit(7).toArray()
+  .then(result => result);
+};
+const findMoviesById = (id) => {
+  return mdb.collection('Movies')
+  .findOne({ id: Number(id) })
+  .then(result => result);
+};
+const searchMovies = (title='', limit=7) => {
+  return mdb.collection('Movies')
+  .find({
+    title: {$regex:title, $options: 'i'}
+  }).limit(limit).toArray()
+  .then(result => result);
+};
+const findCastByMovieId = (movieId) => {
+  return mdb.collection('Cast')
+  .find({movieId: Number(movieId)}).project({
+    name: 1
+  }).toArray()
+  .then(result => result);
 };
 export default {
   authenticate,
-  findMovies
+  findMovies,
+  searchMovies,
+  findMoviesById,
+  findCastByMovieId
 };

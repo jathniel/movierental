@@ -1,11 +1,17 @@
 import React,{ Component }  from 'react';
+import ReactScrollPagination from 'react-scroll-pagination';
 import MovieList from './MovieList';
+import SearchMovies from './SearchMovies';
+import MoviePreview from './MoviePreview';
 import * as api from '../api';
 
 
 class MoviePage extends Component {
   state = {
-    movielist:[]
+    movielist:[],
+    search: '',
+    limit: 7,
+    selectedMovie: null
   }
   componentDidMount() {
     this.getMovieList();
@@ -19,24 +25,67 @@ class MoviePage extends Component {
       console.error(e);
     });
   };
+  searchMovieList = () => {
+    return api.searchMovies(this.state.search, this.state.limit)
+    .then((result) => {
+      this.setState({movielist: result});
+    })
+    .catch((e) => {
+      console.error(e);
+    });
+  };
+  updateLimit =() => {
+    setTimeout(() => {
+      this.setState({limit: this.state.limit + 7});
+      this.searchMovieList();
+    }, 1000);
 
+  };
+  handleSearch = (event) => {
+    event.preventDefault();
+    let state = {};
+    state[event.target.name] = event.target.value;
+    this.setState(state);
+    this.searchMovieList();
+  };
+  getMovieDescription = (id) => {
+    return api.getMovieDescription(id)
+    .then(result => result)
+    .catch((e) => {
+      console.error(e);
+    });
+  };
+  handleClick = (id) => {
+    this.getMovieDescription(id)
+    .then(resp => {
+      this.setState({
+        selectedMovie: resp
+      });
+    })
+    .catch((e) => {
+      console.error(e);
+    });
+  }
+  removePreview = () => {
+    this.setState({
+      selectedMovie: null
+    });
+  };
   render() {
     return(
       <div className="movie">
+        {this.state.selectedMovie ? <MoviePreview {...this.state.selectedMovie} removePreview={this.removePreview}/> : null }
         <div className="search-bar">
           <div className="container">
             <div className="search-container">
-              <form>
-                <div className="form-group">
-                  <div className="wrapper">
-                    <input type="text" name="search" placeholder="Search Movie title" className="form-control input input-lg margin-bottom10"/>
-                  </div>
-                </div>
-              </form>
+              <SearchMovies
+              search={this.state.search}
+              handleSearch={this.handleSearch}/>
             </div>
           </div>
         </div>
-        <MovieList movies={this.state.movielist}/>
+        <MovieList movies={this.state.movielist} handleClick={this.handleClick}/>
+        <ReactScrollPagination fetchFunc={this.updateLimit}/>
       </div>
     );
   }
