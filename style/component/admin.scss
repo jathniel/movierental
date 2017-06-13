@@ -15,4 +15,81 @@ $background-white: #fff;
     padding-top: 20px;
 
   }
+
+  .add-movie {
+    background: darken($color-dark-green, 5%);
+    border-radius: 5px;
+    color: $color-white;
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    font-size: 16px;
+    height: 150px;
+    margin: 5px;
+    max-width: 100%;
+    padding: 28px;
+    text-align: center;
+    width: 100px;
+
+    .fa {
+      font-size: 35px;
+    }
+  }
+
+  .movie-card {
+    background: $color-white;
+    box-shadow: 1px 1px 3px $card-shadow;
+    cursor: pointer;
+    display: inline-block;
+    margin: 5px;
+    text-align: center;
+    width: 100px;
+
+    img {
+      height: 150px;
+      max-width: 100%;
+      width: 100px;
+    }
+
+    p {
+      color: $color-black;
+      font-weight: 700;
+      margin: 10px;
+      text-align: left;
+    }
+
+    &:hover,
+    &:visited {
+      text-decoration: none;
+    }
+  }
+
+  .admin-preview {
+    .movie {
+      &-title {
+        font-size: 1.5em;
+      }
+
+      &-image {
+        width: 150px;
+      }
+
+    }
+
+    .cast-preview {
+      background: $color-green;
+      border-radius: 5px;
+      color: $color-white;
+      display: inline-block;
+      margin: 5px;
+      padding: 5px;
+      position: relative;
+
+      .delete-cast {
+        cursor: pointer;
+        float: right;
+        margin-left: 10px;
+      }
+    }
+  }
 }

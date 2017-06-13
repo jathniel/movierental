@@ -15,7 +15,7 @@ const authenticate = (username, password) => {
 };
 const findMovies = () => {
   return mdb.collection('Movies')
-  .find().limit(7).toArray()
+  .find().limit(8).toArray()
   .then(result => result);
 };
 const findMoviesById = (id) => {
@@ -33,7 +33,8 @@ const searchMovies = (title='', limit=7) => {
 const findCastByMovieId = (movieId) => {
   return mdb.collection('Cast')
   .find({movieId: Number(movieId)}).project({
-    name: 1
+    name: 1,
+    id: 1
   }).toArray()
   .then(result => result);
 };
@@ -49,6 +50,11 @@ const checkRented = (movieId, userId) => {
      .findOne({movieId: Number(movieId), userId})
      .then(result => result);
 };
+const deleteCast = (id) => {
+  return mdb.collection('Cast')
+     .deleteOne({id: Number(id)})
+     .then(result => result);
+};
 export default {
   authenticate,
   findMovies,
@@ -56,5 +62,6 @@ export default {
   findMoviesById,
   findCastByMovieId,
   rentMovie,
-  checkRented
+  checkRented,
+  deleteCast
 };

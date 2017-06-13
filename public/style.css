@@ -128,80 +128,138 @@ body {
 .login {
   height: 100vh; }
   .login-container {
-    height: 100vh;
-    background-color: #ebebeb; }
+    background: #ebebeb;
+    height: 100vh; }
   .login-image {
-    height: 100vh;
+    background-color: #333;
     background-image: url("/images/about.jpg");
-    background-size: cover;
     background-position: top left;
-    background-color: #333; }
+    background-size: cover;
+    height: 100vh; }
   .login-details {
     display: block;
-    margin: 25vh auto 30vh;
-    width: 282px;
     height: 40vh;
-    text-align: left; }
-
-.body {
-  background: red; }
+    margin: 25vh auto 30vh;
+    text-align: left;
+    width: 282px; }
 
 .movie {
   min-height: 100vh; }
   .movie .search-bar {
-    height: 70vh;
+    background-color: #333;
     background-image: url("/images/movie.png");
-    background-size: cover;
     background-position: center center;
-    background-color: #333; }
+    background-size: cover;
+    height: 70vh; }
   .movie .search-container {
-    margin: 30vh auto 0px;
+    margin: 30vh auto 0;
     max-width: 582px;
     width: 100%; }
   .movie .movie-list {
     margin-top: 20px;
     padding: 20px;
     text-align: center; }
-    .movie .movie-list:after {
+    .movie .movie-list::after {
       clear: both; }
   .movie .movie-card {
+    background: #fff;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.27);
+    cursor: pointer;
     display: inline-block;
-    width: 150px;
     margin: 5px;
     text-align: center;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.27);
-    background: #fff;
-    cursor: pointer; }
+    width: 150px; }
     .movie .movie-card img {
+      height: 213px;
       max-width: 100%;
-      width: 150px;
-      height: 213px; }
+      width: 150px; }
     .movie .movie-card p {
-      text-align: left;
-      margin: 10px;
       color: #333;
-      font-weight: 700; }
+      font-weight: 700;
+      margin: 10px;
+      text-align: left; }
     .movie .movie-card:hover, .movie .movie-card:visited {
       text-decoration: none; }
   .movie .overlay {
+    background: rgba(0, 0, 0, 0.8);
+    height: 100vh;
+    left: 0;
     position: fixed;
     top: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 9000;
     width: 100%;
-    height: 100vh; }
+    z-index: 9000; }
   .movie .movie-preview {
     position: fixed;
     top: 5%;
-    z-index: 9001;
-    width: 100%; }
+    width: 100%;
+    z-index: 9001; }
     .movie .movie-preview__container {
       background: #fff; }
     .movie .movie-preview__image {
-      background: #000;
-      text-align: center;
-      padding-bottom: 30px; }
+      background: #333;
+      padding-bottom: 30px;
+      text-align: center; }
       .movie .movie-preview__image img {
         max-width: 100%;
         width: 300px; }
+
+.admin {
+  background: #f9fafb; }
+  .admin .admin-movie-list {
+    min-height: 100vh;
+    padding-top: 20px; }
+  .admin .admin-movie-description {
+    background: #fff;
+    min-height: 100vh;
+    padding-top: 20px; }
+  .admin .add-movie {
+    background: #30a96d;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    font-size: 16px;
+    height: 150px;
+    margin: 5px;
+    max-width: 100%;
+    padding: 28px;
+    text-align: center;
+    width: 100px; }
+    .admin .add-movie .fa {
+      font-size: 35px; }
+  .admin .movie-card {
+    background: #fff;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.27);
+    cursor: pointer;
+    display: inline-block;
+    margin: 5px;
+    text-align: center;
+    width: 100px; }
+    .admin .movie-card img {
+      height: 150px;
+      max-width: 100%;
+      width: 100px; }
+    .admin .movie-card p {
+      color: #333;
+      font-weight: 700;
+      margin: 10px;
+      text-align: left; }
+    .admin .movie-card:hover, .admin .movie-card:visited {
+      text-decoration: none; }
+  .admin .admin-preview .movie-title {
+    font-size: 1.5em; }
+  .admin .admin-preview .movie-image {
+    width: 150px; }
+  .admin .admin-preview .cast-preview {
+    background: #3cc782;
+    border-radius: 5px;
+    color: #fff;
+    display: inline-block;
+    margin: 5px;
+    padding: 5px;
+    position: relative; }
+    .admin .admin-preview .cast-preview .delete-cast {
+      cursor: pointer;
+      float: right;
+      margin-left: 10px; }

@@ -2,6 +2,10 @@
 $container-background: #ebebeb;
 $color-black: #333;
 $color-white: #fff;
+$color-green: #3cc782;
+$color-dark-green: #36bd7a;
+
 @import 'component/custom';
 @import 'component/login';
 @import 'component/movie';
+@import 'component/admin';

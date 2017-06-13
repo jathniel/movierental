@@ -64,12 +64,24 @@ apiRouter.post('/movies', (req, res)=> {
   })
   .catch(() => res.status(403).send('failed'));
 });
+
 apiRouter.post('/rent', (req, res)=> {
   const movieId = req.body.movieId;
   const user = req.session.user.id;
   const quantity = req.body.quantity - 1;
   if(user && movieId) {
     model.rentMovie(movieId, user, quantity)
+    .then(result => {
+      res.status(200).send(result);
+    })
+    .catch(() => res.status(403).send('failed'));
+  } else {
+    res.status(403).send('failed');
+  }
+});
+apiRouter.delete('/cast/:id', (req, res) => {
+  if(req.params.id) {
+    model.deleteCast(req.params.id)
     .then(result => {
       res.status(200).send(result);
     })

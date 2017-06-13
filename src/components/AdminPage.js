@@ -2,12 +2,13 @@ import React,{ Component } from 'react';
 import SearchMovies from './SearchMovies';
 import ReactScrollPagination from 'react-scroll-pagination';
 import MovieList from './MovieList';
+import AdminMoviePreview from './AdminMoviePreview';
 import * as api from '../api';
 class Admin extends Component {
   state = {
     movielist:[],
     search: '',
-    limit: 7,
+    limit: 12,
     selectedMovie: null
 
   }
@@ -46,7 +47,45 @@ class Admin extends Component {
     this.setState(state);
     this.searchMovieList();
   };
-
+  getMovieDescription = (id) => {
+    return api.getMovieDescription(id)
+    .then(result => result)
+    .catch((e) => {
+      console.error(e);
+    });
+  };
+  deleteCast = (id) => {
+    return api.deleteCast(id)
+    .then(result => result)
+    .catch((e) => {
+      console.error(e);
+    });
+  }
+  handleClick = (id) => {
+    this.getMovieDescription(id)
+    .then(resp => {
+      this.setState({
+        selectedMovie: resp
+      });
+    })
+    .catch((e) => {
+      console.error(e);
+    });
+  }
+  removePreview = () => {
+    this.setState({
+      selectedMovie: null
+    });
+  };
+  deleteCastById = (id) => {
+    this.deleteCast(id)
+    .then(() => {
+      let state = this.state.selectedMovie;
+      let index = state.cast.findIndex(data => data.id == id);
+      state.cast.splice(index, 1);
+      this.setState(state);
+    });
+  };
   render() {
     return (
       <div className="admin">
@@ -55,11 +94,12 @@ class Admin extends Component {
             <SearchMovies
             search={this.state.search}
             handleSearch={this.handleSearch}/>
+            <div className="add-movie"><i className="fa fa-plus" aria-hidden="true"></i>Add Movie</div>
             <MovieList movies={this.state.movielist} handleClick={this.handleClick}/>
             <ReactScrollPagination fetchFunc={this.updateLimit}/>
           </div>
           <div className="col-xs-12 col-sm-6 col-md-5 admin-movie-description">
-
+          {this.state.selectedMovie ? <AdminMoviePreview {...this.state.selectedMovie} deleteCastById={this.deleteCastById}/> : null }
           </div>
         </div>
       </div>
