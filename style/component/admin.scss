@@ -1,0 +1,18 @@
+$background-movie: #f9fafb;
+$background-white: #fff;
+
+.admin {
+  background: $background-movie;
+
+  .admin-movie-list {
+    min-height: 100vh;
+    padding-top: 20px;
+  }
+
+  .admin-movie-description {
+    background: $background-white;
+    min-height: 100vh;
+    padding-top: 20px;
+
+  }
+}

@@ -1,0 +1,26 @@
+
+
+.login {
+  height: 100vh;
+
+  &-container {
+    background: $container-background;
+    height: 100vh;
+  }
+
+  &-image {
+    background-color: $color-black;
+    background-image: url('/images/about.jpg');
+    background-position: top left;
+    background-size: cover;
+    height: 100vh;
+  }
+
+  &-details {
+    display: block;
+    height: 40vh;
+    margin: 25vh auto 30vh;
+    text-align: left;
+    width: 282px;
+  }
+}

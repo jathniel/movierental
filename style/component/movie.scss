@@ -1,0 +1,90 @@
+$card-shadow: rgba(0, 0, 0, .27);
+$overlay: rgba(0, 0, 0, .8);
+
+.movie {
+  min-height: 100vh;
+
+  .search-bar {
+    background-color: $color-black;
+    background-image: url('/images/movie.png');
+    background-position: center center;
+    background-size: cover;
+    height: 70vh;
+  }
+
+  .search-container {
+    margin: 30vh auto 0;
+    max-width: 582px;
+    width: 100%;
+  }
+
+  .movie-list {
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+
+    &::after {
+      clear: both;
+    }
+  }
+
+  .movie-card {
+    background: $color-white;
+    box-shadow: 1px 1px 3px $card-shadow;
+    cursor: pointer;
+    display: inline-block;
+    margin: 5px;
+    text-align: center;
+    width: 150px;
+
+    img {
+      height: 213px;
+      max-width: 100%;
+      width: 150px;
+    }
+
+    p {
+      color: $color-black;
+      font-weight: 700;
+      margin: 10px;
+      text-align: left;
+    }
+
+    &:hover,
+    &:visited {
+      text-decoration: none;
+    }
+  }
+
+  .overlay {
+    background: $overlay;
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9000;
+  }
+
+  .movie-preview {
+    position: fixed;
+    top: 5%;
+    width: 100%;
+    z-index: 9001;
+
+    &__container {
+      background: $color-white;
+    }
+
+    &__image {
+      background: $color-black;
+      padding-bottom: 30px;
+      text-align: center;
+
+      img {
+        max-width: 100%;
+        width: 300px;
+      }
+    }
+  }
+}

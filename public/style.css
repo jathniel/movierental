@@ -39,7 +39,7 @@ body {
     margin-top: 100px;
     padding: 80px 0 30px;
     color: white; }
-    .home .banner .slogan h2 {
+    .home .banner .slogan h1 {
       font-size: 2.8em;
       line-height: normal;
       text-transform: uppercase; }
@@ -77,88 +77,6 @@ body {
   background: #283645;
   color: #707E8C;
   padding: 20px; }
-
-.login {
-  height: 100vh; }
-  .login-container {
-    height: 100vh;
-    background-color: #ebebeb; }
-  .login-image {
-    height: 100vh;
-    background-image: url("/images/about.jpg");
-    background-size: cover;
-    background-position: top left;
-    background-color: #333; }
-  .login-details {
-    display: block;
-    margin: 25vh auto 30vh;
-    width: 282px;
-    height: 40vh;
-    text-align: left; }
-
-.movie {
-  min-height: 100vh; }
-  .movie .search-bar {
-    height: 70vh;
-    background-image: url("/images/movie.png");
-    background-size: cover;
-    background-position: center center;
-    background-color: #333; }
-  .movie .search-container {
-    margin: 30vh auto 0px;
-    max-width: 582px;
-    width: 100%; }
-
-.movie-list {
-  margin-top: 20px;
-  padding: 20px;
-  text-align: center; }
-  .movie-list:after {
-    clear: both; }
-
-.movie-card {
-  display: inline-block;
-  width: 150px;
-  margin: 5px;
-  text-align: center;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.27);
-  background: #fff;
-  cursor: pointer; }
-  .movie-card img {
-    max-width: 100%;
-    width: 150px;
-    height: 213px; }
-  .movie-card p {
-    text-align: left;
-    margin: 10px;
-    color: #333;
-    font-weight: 700; }
-  .movie-card:hover, .movie-card:visited {
-    text-decoration: none; }
-
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 9000;
-  width: 100%;
-  height: 100vh; }
-
-.movie-preview {
-  position: fixed;
-  top: 5%;
-  z-index: 9001;
-  width: 100%; }
-  .movie-preview__container {
-    background: #fff; }
-  .movie-preview__image {
-    background: #000;
-    text-align: center;
-    padding-bottom: 30px; }
-    .movie-preview__image img {
-      max-width: 100%;
-      width: 300px; }
 
 .margin-0 {
   margin: 0 !important; }
@@ -206,3 +124,84 @@ body {
   float: right;
   z-index: 1;
   font-size: 1.7em; }
+
+.login {
+  height: 100vh; }
+  .login-container {
+    height: 100vh;
+    background-color: #ebebeb; }
+  .login-image {
+    height: 100vh;
+    background-image: url("/images/about.jpg");
+    background-size: cover;
+    background-position: top left;
+    background-color: #333; }
+  .login-details {
+    display: block;
+    margin: 25vh auto 30vh;
+    width: 282px;
+    height: 40vh;
+    text-align: left; }
+
+.body {
+  background: red; }
+
+.movie {
+  min-height: 100vh; }
+  .movie .search-bar {
+    height: 70vh;
+    background-image: url("/images/movie.png");
+    background-size: cover;
+    background-position: center center;
+    background-color: #333; }
+  .movie .search-container {
+    margin: 30vh auto 0px;
+    max-width: 582px;
+    width: 100%; }
+  .movie .movie-list {
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center; }
+    .movie .movie-list:after {
+      clear: both; }
+  .movie .movie-card {
+    display: inline-block;
+    width: 150px;
+    margin: 5px;
+    text-align: center;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.27);
+    background: #fff;
+    cursor: pointer; }
+    .movie .movie-card img {
+      max-width: 100%;
+      width: 150px;
+      height: 213px; }
+    .movie .movie-card p {
+      text-align: left;
+      margin: 10px;
+      color: #333;
+      font-weight: 700; }
+    .movie .movie-card:hover, .movie .movie-card:visited {
+      text-decoration: none; }
+  .movie .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 9000;
+    width: 100%;
+    height: 100vh; }
+  .movie .movie-preview {
+    position: fixed;
+    top: 5%;
+    z-index: 9001;
+    width: 100%; }
+    .movie .movie-preview__container {
+      background: #fff; }
+    .movie .movie-preview__image {
+      background: #000;
+      text-align: center;
+      padding-bottom: 30px; }
+      .movie .movie-preview__image img {
+        max-width: 100%;
+        width: 300px; }

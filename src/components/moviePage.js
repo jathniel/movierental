@@ -76,7 +76,7 @@ class MoviePage extends Component {
     .then(() => {
       let selectedMovie = this.state.selectedMovie;
       selectedMovie['quantity'] = this.state.selectedMovie.quantity - 1;
-      selectedMovie['isRented'] = true; 
+      selectedMovie['isRented'] = true;
       this.setState(selectedMovie);
     });
   }
@@ -93,8 +93,11 @@ class MoviePage extends Component {
             </div>
           </div>
         </div>
-        <MovieList movies={this.state.movielist} handleClick={this.handleClick}/>
+        <div className="movie-list container">
+          <MovieList movies={this.state.movielist} handleClick={this.handleClick}/>
+        </div>
         <ReactScrollPagination fetchFunc={this.updateLimit}/>
+
       </div>
     );
   }

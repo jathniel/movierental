@@ -15,6 +15,12 @@ router.get('/movies', (req, res)=> {
     res.redirect('/');
   }
 });
-
+router.get('/admin', (req, res)=> {
+  if(req.session.user) {
+    res.render('admin', req.session.user);
+  } else {
+    res.redirect('/');
+  }
+});
 
 export default router;

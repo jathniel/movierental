@@ -1,0 +1,144 @@
+* {
+  font-family: 'Helvetica Neue';
+}
+body {
+  background-color: #fafafa;
+}
+.header {
+  padding: 15px;
+  &.stick-top {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+   &-logo {
+     font-size: 24px;
+     color: #fff;
+   }
+   &-btn {
+    color: #fff;
+    background-color: #e50914;
+    line-height: normal;
+    padding: 7px 17px;
+    font-weight: 400;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+    &:hover, &:visited {
+      text-decoration: none;
+      color: #fff;
+      background: lighten(#e50914, 5%);
+    }
+   }
+}
+.home {
+  .banner {
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #333;
+    background-image: url('/images/bg.jpg');
+    height: 100vh;
+    .slogan {
+      margin-top: 100px;
+      padding: 80px 0 30px;
+      color: white;
+      h1 {
+        font-size: 2.8em;
+        line-height: normal;
+        text-transform: uppercase;
+      }
+    }
+  }
+  .feature {
+    background: #333;
+    &-block {
+      color: #ffffff;
+      padding: 30px;
+      h3 {
+        font-size: 6em;
+      }
+      h6 {
+        margin-top: 30px;
+        font-size: 16px;
+      }
+    }
+  }
+  .about {
+    background: #ffffff;
+    padding: 20px;
+    margin-top: 50px;
+    img {
+      max-width: 80%;
+      margin-top: 50px;
+    }
+    h2 {
+      font-size: 4em;
+      color: #333;
+      margin-bottom: 40px;
+      margin-top: 0px;
+    }
+    p {
+      color: #333;
+      font-size: 22px;
+      line-height: 34px;
+      text-align: left;
+    }
+  }
+}
+.footer {
+  background: #283645;
+  color: #707E8C;
+  padding: 20px;
+}
+
+.margin-0 {
+  margin: 0 !important;
+}
+.padding-0 {
+  padding: 0 !important;
+}
+.error {
+  color: #ff0000;
+}
+.success {
+  color: #4bb543;
+}
+.btn-lg, .input-lg {
+  font-size: 15px;
+}
+.btn-rent {
+  color: #fff;
+  background-color: #e50914;
+  line-height: normal;
+  padding: 7px 17px;
+  font-weight: 400;
+  border-radius: 3px;
+  font-size: 16px;
+  margin: 20px 0;
+  cursor: pointer;
+  &:hover, &:visited {
+    text-decoration: none;
+    color: #fff;
+    background: lighten(#e50914, 5%);
+  }
+}
+.movie-cast {
+  margin-left: 5px;
+}
+.wrapper {
+    position: relative;
+}
+
+.wrapper:before {
+  font-family: 'FontAwesome';
+  color: #888;
+  position: absolute;
+  right: 15px;
+  margin-top: 5px;
+  content: "\f002";
+  float: right;
+  z-index: 1;
+  font-size: 1.7em;
+}

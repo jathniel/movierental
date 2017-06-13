@@ -1,5 +1,4 @@
 import React,{ Component } from 'react';
-// import { PropTypes } from 'prop-types';
 import LoginForm from './loginForm';
 import * as api from '../api';
 class Login extends Component {

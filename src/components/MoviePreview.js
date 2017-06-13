@@ -21,7 +21,6 @@ const MoviePreview = (props) => {
         <div className="container padding-0 movie-preview__container">
           <div className="row margin-0">
             <div className="col-xs-12 col-sm-6 text-center movie-preview__image">
-              {props.isRented}
               <img src={props.image}/>
             </div>
             <div className="col-xs-12 col-sm-6">

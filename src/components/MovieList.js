@@ -4,8 +4,7 @@ import MovieListPreview from './MovieListPreview';
 const MovieList = ({ movies, handleClick }) => {
 
   return(
-    <div className="movie-list container">
-      <h1>Movies</h1>
+    <div>
       {movies.map(movie =>
         <MovieListPreview key={movie._id} handleClick={handleClick} {...movie}/>
       )}
