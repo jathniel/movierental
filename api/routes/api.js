@@ -98,6 +98,16 @@ apiRouter.delete('/cast/:id', (req, res) => {
   } else {
     res.status(403).send('failed');
   }
-
+});
+apiRouter.delete('/movies/:id', (req, res) => {
+  if(req.params.id) {
+    model.deleteMovie(req.params.id)
+    .then(result => {
+      res.status(200).send(result);
+    })
+    .catch((e) => res.status(403).send(e));
+  } else {
+    res.status(403).send('failed');
+  }
 });
 export default apiRouter;

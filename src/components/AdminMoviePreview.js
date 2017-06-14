@@ -6,10 +6,14 @@ const AdminMoviePreview = (props) => {
   const deleteCast = (id) => {
     props.deleteCastById(id);
   };
+  const deleteMovie =(e) => {
+    e.preventDefault();
+    props.deleteMovie(props.id);
+  };
   return(
     <div className="admin-preview">
     <div className="preview-buttons">
-      <button className="btn btn-danger btn-lg">Delete</button>
+      <button className="btn btn-danger btn-lg" onClick={deleteMovie}>Delete</button>
       <button className="btn btn-warning btn-lg">Update</button>
     </div>
       <div className="movie-title">

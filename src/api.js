@@ -28,3 +28,7 @@ export const addMovie = (form, cast) => {
   return axios.post('/api/movies/add', {form, cast})
               .then(resp => resp.data);
 };
+export const deleteMovie = (id) => {
+  return axios.delete(`/api/movies/${id}`)
+              .then(resp => resp.data);
+};

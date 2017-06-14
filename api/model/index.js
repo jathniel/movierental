@@ -68,7 +68,6 @@ const addMovies = (form, casts) => {
            cast.movieId = form.id;
            cast.id = castCount;
            castCount++;
-           console.log(cast);
            return mdb.collection('Cast')
               .insertOne(cast)
               .then((result) => result);
@@ -76,6 +75,15 @@ const addMovies = (form, casts) => {
        });
      });
   });
+};
+const deleteMovie = (id) => {
+  return mdb.collection('Movies')
+   .deleteOne({id: Number(id)})
+   .then(() => {
+     return mdb.collection('Cast')
+       .deleteMany({movieId: Number(id)})
+       .then((result) => result);
+   });
 };
 export default {
   authenticate,
@@ -86,5 +94,6 @@ export default {
   rentMovie,
   checkRented,
   deleteCast,
-  addMovies
+  addMovies,
+  deleteMovie
 };

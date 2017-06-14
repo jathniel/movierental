@@ -96,6 +96,13 @@ class Admin extends Component {
       selectedMovie: null
     });
   }
+  deleteMovie =(id) => {
+    api.deleteMovie(id)
+    .then(()=> {
+      this.setState({selectedMovie:null});
+      this.getMovieList();
+    });
+  }
   render() {
     return (
       <div className="admin">
@@ -109,7 +116,7 @@ class Admin extends Component {
             <ReactScrollPagination fetchFunc={this.updateLimit}/>
           </div>
           <div className="col-xs-12 col-sm-6 col-md-5 admin-movie-description">
-          {this.state.selectedMovie ? <AdminMoviePreview {...this.state.selectedMovie} deleteCastById={this.deleteCastById}/> : null}
+          {this.state.selectedMovie ? <AdminMoviePreview {...this.state.selectedMovie} deleteCastById={this.deleteCastById} deleteMovie={this.deleteMovie}/> : null}
           {this.state.addMovie ? <AddMovie getMovieList={this.getMovieList}/> : null}
           </div>
         </div>
