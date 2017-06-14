@@ -3,12 +3,14 @@ import SearchMovies from './SearchMovies';
 import ReactScrollPagination from 'react-scroll-pagination';
 import MovieList from './MovieList';
 import AdminMoviePreview from './AdminMoviePreview';
+import AddMovie from './AddMovie';
 import * as api from '../api';
 class Admin extends Component {
   state = {
     movielist:[],
     search: '',
     limit: 12,
+    addMovie: false,
     selectedMovie: null
 
   }
@@ -65,6 +67,7 @@ class Admin extends Component {
     this.getMovieDescription(id)
     .then(resp => {
       this.setState({
+        addMovie: false,
         selectedMovie: resp
       });
     })
@@ -74,6 +77,7 @@ class Admin extends Component {
   }
   removePreview = () => {
     this.setState({
+      addMovie: false,
       selectedMovie: null
     });
   };
@@ -86,6 +90,12 @@ class Admin extends Component {
       this.setState(state);
     });
   };
+  addMovie = () => {
+    this.setState({
+      addMovie: true,
+      selectedMovie: null
+    });
+  }
   render() {
     return (
       <div className="admin">
@@ -94,12 +104,13 @@ class Admin extends Component {
             <SearchMovies
             search={this.state.search}
             handleSearch={this.handleSearch}/>
-            <div className="add-movie"><i className="fa fa-plus" aria-hidden="true"></i>Add Movie</div>
+            <div className="add-movie__button" onClick={this.addMovie}><i className="fa fa-plus" aria-hidden="true"></i>Add Movie</div>
             <MovieList movies={this.state.movielist} handleClick={this.handleClick}/>
             <ReactScrollPagination fetchFunc={this.updateLimit}/>
           </div>
           <div className="col-xs-12 col-sm-6 col-md-5 admin-movie-description">
-          {this.state.selectedMovie ? <AdminMoviePreview {...this.state.selectedMovie} deleteCastById={this.deleteCastById}/> : null }
+          {this.state.selectedMovie ? <AdminMoviePreview {...this.state.selectedMovie} deleteCastById={this.deleteCastById}/> : null}
+          {this.state.addMovie ? <AddMovie getMovieList={this.getMovieList}/> : null}
           </div>
         </div>
       </div>

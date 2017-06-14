@@ -16,23 +16,32 @@ $background-white: #fff;
 
   }
 
-  .add-movie {
-    background: darken($color-dark-green, 5%);
-    border-radius: 5px;
-    color: $color-white;
-    cursor: pointer;
-    display: inline-block;
-    float: left;
-    font-size: 16px;
-    height: 150px;
-    margin: 5px;
-    max-width: 100%;
-    padding: 28px;
-    text-align: center;
-    width: 100px;
+  .preview-buttons {
+    button {
+      float: right;
+      margin-right: 5px;
+    }
+  }
 
-    .fa {
-      font-size: 35px;
+  .add-movie {
+    &__button {
+      background: darken($color-dark-green, 5%);
+      border-radius: 5px;
+      color: $color-white;
+      cursor: pointer;
+      display: inline-block;
+      float: left;
+      font-size: 16px;
+      height: 150px;
+      margin: 5px;
+      max-width: 100%;
+      padding: 28px;
+      text-align: center;
+      width: 100px;
+
+      .fa {
+        font-size: 35px;
+      }
     }
   }
 
@@ -64,11 +73,12 @@ $background-white: #fff;
     }
   }
 
+  .movie-title {
+    font-size: 1.5em;
+  }
+
   .admin-preview {
     .movie {
-      &-title {
-        font-size: 1.5em;
-      }
 
       &-image {
         width: 150px;

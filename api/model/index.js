@@ -15,15 +15,15 @@ const authenticate = (username, password) => {
 };
 const findMovies = () => {
   return mdb.collection('Movies')
-  .find().limit(8).toArray()
+  .find().limit(10).toArray()
   .then(result => result);
 };
 const findMoviesById = (id) => {
   return mdb.collection('Movies')
-  .findOne({ id: Number(id) })
+  .findOne({ id: Number(id)})
   .then(result => result);
 };
-const searchMovies = (title='', limit=7) => {
+const searchMovies = (title='', limit=10) => {
   return mdb.collection('Movies')
   .find({
     title: {$regex:title, $options: 'i'}
@@ -32,16 +32,16 @@ const searchMovies = (title='', limit=7) => {
 };
 const findCastByMovieId = (movieId) => {
   return mdb.collection('Cast')
-  .find({movieId: Number(movieId)}).project({
+  .find({movieId:Number(movieId)}).project({
     name: 1,
     id: 1
   }).toArray()
   .then(result => result);
 };
 const rentMovie = (movieId, userId, quantity) => {
-  return mdb.collection('rent').insertOne({movieId, userId}).then(() => {
+  return mdb.collection('rent').insertOne({movieId: Number(movieId), userId}).then(() => {
     return mdb.collection('Movies')
-    .updateOne({id:movieId},{$set:{quantity}})
+    .updateOne({id:Number(movieId)},{$set:{quantity}})
     .then(result => result);
   });
 };
@@ -55,6 +55,28 @@ const deleteCast = (id) => {
      .deleteOne({id: Number(id)})
      .then(result => result);
 };
+const addMovies = (form, casts) => {
+  return mdb.collection('Movies').count()
+  .then((count) => {
+    form.id = count + 1;
+    return mdb.collection('Movies')
+     .insertOne(form)
+     .then(() => {
+       return mdb.collection('Cast').count()
+       .then(castCount => {
+         casts.forEach((cast) => {
+           cast.movieId = form.id;
+           cast.id = castCount;
+           castCount++;
+           console.log(cast);
+           return mdb.collection('Cast')
+              .insertOne(cast)
+              .then((result) => result);
+         });
+       });
+     });
+  });
+};
 export default {
   authenticate,
   findMovies,
@@ -63,5 +85,6 @@ export default {
   findCastByMovieId,
   rentMovie,
   checkRented,
-  deleteCast
+  deleteCast,
+  addMovies
 };

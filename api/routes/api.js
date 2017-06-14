@@ -64,7 +64,16 @@ apiRouter.post('/movies', (req, res)=> {
   })
   .catch(() => res.status(403).send('failed'));
 });
-
+apiRouter.post('/movies/add', (req, res)=> {
+  const form = req.body.form;
+  const cast = req.body.cast;
+  model.addMovies(form, cast)
+  .then(result => {
+    console.log(result);
+    res.status(200).send(result);
+  })
+  .catch(() => res.status(403).send('failed'));
+});
 apiRouter.post('/rent', (req, res)=> {
   const movieId = req.body.movieId;
   const user = req.session.user.id;

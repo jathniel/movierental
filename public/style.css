@@ -84,6 +84,9 @@ body {
 .padding-0 {
   padding: 0 !important; }
 
+.margin-bottom10 {
+  margin-bottom: 10px !important; }
+
 .error {
   color: #ff0000; }
 
@@ -212,7 +215,10 @@ body {
     background: #fff;
     min-height: 100vh;
     padding-top: 20px; }
-  .admin .add-movie {
+  .admin .preview-buttons button {
+    float: right;
+    margin-right: 5px; }
+  .admin .add-movie__button {
     background: #30a96d;
     border-radius: 5px;
     color: #fff;
@@ -226,7 +232,7 @@ body {
     padding: 28px;
     text-align: center;
     width: 100px; }
-    .admin .add-movie .fa {
+    .admin .add-movie__button .fa {
       font-size: 35px; }
   .admin .movie-card {
     background: #fff;
@@ -247,7 +253,7 @@ body {
       text-align: left; }
     .admin .movie-card:hover, .admin .movie-card:visited {
       text-decoration: none; }
-  .admin .admin-preview .movie-title {
+  .admin .movie-title {
     font-size: 1.5em; }
   .admin .admin-preview .movie-image {
     width: 150px; }
