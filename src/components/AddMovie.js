@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import { PropTypes } from 'prop-types';
-import AdminCast from './AdminCast';
 import ValidateInput from './ValidateInput';
+import ValidateInputNumber from './ValidateInputNumber';
+import AdminCast from './AdminCast';
 import * as api from '../api';
 class AddMovie extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      castIndex: 0,
       castCollection: [],
       form: {},
       error: {}
@@ -16,21 +16,17 @@ class AddMovie extends Component {
 
   addCast = (event) => {
     event.preventDefault();
+    let form = this.state.form;
     let data = this.state.castCollection;
-    data.push({
-      id: this.state.castIndex,
-      name: this.state.form.cast
-    });
-
+    data.push(this.state.form.cast);
+    form.cast = '';
     this.setState({
-      castIndex: this.state.castIndex + 1,
       castCollection: data,
-      cast: ''
+      form,
     });
   }
-  deleteCastById = (id) => {
+  deleteCast = (index) => {
     let state = this.state;
-    let index = state.castCollection.findIndex(data => data.id == id);
     state.castCollection.splice(index, 1);
     this.setState(state);
   };
@@ -54,7 +50,6 @@ class AddMovie extends Component {
         <form noValidate onSubmit={this.submitForm}>
           <div className="form-group">
             <ValidateInput
-            type="text"
             name="title"
             className="form-control"
             placeholder="title"
@@ -67,7 +62,6 @@ class AddMovie extends Component {
               Browse <input type="file" className="hidden"/>
           </label> Or
             <ValidateInput
-            type="text"
             name="image"
             className="form-control"
             placeholder="Image Link"
@@ -77,8 +71,7 @@ class AddMovie extends Component {
           </div>
 
           <div className="form-group">
-          <ValidateInput
-          type="number"
+          <ValidateInputNumber
           name="quantity"
           className="form-control"
           placeholder="quantity"
@@ -97,8 +90,7 @@ class AddMovie extends Component {
           required={true} />
           </div>
           <div className="form-group">
-            <ValidateInput
-            type="number"
+            <ValidateInputNumber
             name="year"
             className="form-control"
             placeholder="year"
@@ -112,8 +104,8 @@ class AddMovie extends Component {
           </div>
           <div className="form-group">
             <p>Cast</p>
-            {this.state.castCollection.map(cast =>
-              <AdminCast key={cast.id} className="movie-cast" handleClick={this.deleteCastById} {...cast} />
+            {this.state.castCollection.map((cast, index) =>
+              <AdminCast key={index} id={index} name={cast} handleClick={this.deleteCast}/>
             )}
             <input type="text" name="cast" value={this.state.form.cast} onChange={this.handleChange} className="form-control" placeholder="Enter Cast names"/>
           </div>

@@ -4,7 +4,7 @@ import { PropTypes } from 'prop-types';
 
 const MovieListPreview = (props) => {
   const OnClick = () => {
-    props.handleClick(props.id);
+    props.handleClick(props._id);
   };
   return(
     <a className="movie-card" onClick={OnClick}>
@@ -13,7 +13,7 @@ const MovieListPreview = (props) => {
   );
 };
 MovieListPreview.propTypes = {
-  id: PropTypes.number.isRequired,
+  _id: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   handleClick: PropTypes.func
 };

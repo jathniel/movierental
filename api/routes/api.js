@@ -38,17 +38,15 @@ apiRouter.get('/movies/:id', (req, res) => {
   if(req.session.user.id) {
     model.findMoviesById(req.params.id)
     .then(result => {
-      model.findCastByMovieId(req.params.id).then(resp => {
-        result.cast = resp;
-        model.checkRented(req.params.id, req.session.user.id).then(rented => {
-          if(rented) {
-            result.isRented = true;
-            res.status(200).send(result);
-          } else {
-            result.isRented = false;
-            res.status(200).send(result);
-          }
-        });
+      model.checkRented(req.params.id, req.session.user.id).then(rented => {
+        if(rented) {
+          result.isRented = true;
+          res.status(200).send(result);
+        } else {
+          result.isRented = false;
+          res.status(200).send(result);
+        }
+
       });
     }).catch(() => res.status(403).send('failed'));
   } else {
@@ -69,7 +67,6 @@ apiRouter.post('/movies/add', (req, res)=> {
   const cast = req.body.cast;
   model.addMovies(form, cast)
   .then(result => {
-    console.log(result);
     res.status(200).send(result);
   })
   .catch(() => res.status(403).send('failed'));
@@ -88,17 +85,7 @@ apiRouter.post('/rent', (req, res)=> {
     res.status(403).send('failed');
   }
 });
-apiRouter.delete('/cast/:id', (req, res) => {
-  if(req.params.id) {
-    model.deleteCast(req.params.id)
-    .then(result => {
-      res.status(200).send(result);
-    })
-    .catch(() => res.status(403).send('failed'));
-  } else {
-    res.status(403).send('failed');
-  }
-});
+
 apiRouter.delete('/movies/:id', (req, res) => {
   if(req.params.id) {
     model.deleteMovie(req.params.id)
@@ -107,7 +94,20 @@ apiRouter.delete('/movies/:id', (req, res) => {
     })
     .catch((e) => res.status(403).send(e));
   } else {
-    res.status(403).send('failed');
+    res.status(404).send('failed');
+  }
+});
+apiRouter.put('/movies/:id', (req, res)=> {
+  if(req.params.id) {
+    const form = req.body.form;
+    const cast = req.body.cast;
+    model.updateMovie(req.params.id, form, cast)
+    .then(result => {
+      res.status(200).send(result);
+    })
+    .catch((e) => res.status(403).send(e));
+  } else {
+    res.status(404).send('failed');
   }
 });
 export default apiRouter;

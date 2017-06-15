@@ -5,7 +5,7 @@ import { PropTypes } from 'prop-types';
 const MoviePreview = (props) => {
   const rentMovie = (e) => {
     e.preventDefault();
-    props.rentMovie(props.id, props.quantity);
+    props.rentMovie(props._id, props.quantity);
   };
   const rentButton = () => {
     if(props.quantity >=0 && !props.isRented) {
@@ -32,8 +32,8 @@ const MoviePreview = (props) => {
               <p className="margin-0"><strong>Year: </strong>{props.year}</p>
               <p><strong>Synopsis: </strong>{props.synopsis}</p>
               <h4>Cast</h4>
-              {props.cast.map(cast =>
-                <span key={cast._id} className="movie-cast">{cast.name}</span>
+              {props.casts.map((cast, index) =>
+                <span key={index} className="movie-cast">{cast}</span>
               )}
             </div>
           </div>
@@ -49,9 +49,9 @@ MoviePreview.propTypes = {
   quantity: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
   synopsis: PropTypes.string.isRequired,
-  year: PropTypes.string.isRequired,
+  year: PropTypes.number.isRequired,
   director: PropTypes.string.isRequired,
-  cast: PropTypes.array.isRequired,
+  casts: PropTypes.array.isRequired,
   removePreview: PropTypes.func.isRequired
 };
 export default MoviePreview;

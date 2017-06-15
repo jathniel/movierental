@@ -1,4 +1,4 @@
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectID } from 'mongodb';
 import assert from 'assert';
 import config from '../../config';
 
@@ -20,7 +20,7 @@ const findMovies = () => {
 };
 const findMoviesById = (id) => {
   return mdb.collection('Movies')
-  .findOne({ id: Number(id)})
+  .findOne({ _id: ObjectID(id)})
   .then(result => result);
 };
 const searchMovies = (title='', limit=10) => {
@@ -30,70 +30,47 @@ const searchMovies = (title='', limit=10) => {
   }).limit(limit).toArray()
   .then(result => result);
 };
-const findCastByMovieId = (movieId) => {
-  return mdb.collection('Cast')
-  .find({movieId:Number(movieId)}).project({
-    name: 1,
-    id: 1
-  }).toArray()
-  .then(result => result);
-};
+
 const rentMovie = (movieId, userId, quantity) => {
-  return mdb.collection('rent').insertOne({movieId: Number(movieId), userId}).then(() => {
+  return mdb.collection('rent').insertOne({movieId: movieId, userId}).then(() => {
     return mdb.collection('Movies')
-    .updateOne({id:Number(movieId)},{$set:{quantity}})
+    .updateOne({_id:ObjectID(movieId)},{$set:{quantity}})
     .then(result => result);
   });
 };
 const checkRented = (movieId, userId) => {
   return mdb.collection('rent')
-     .findOne({movieId: Number(movieId), userId})
+     .findOne({movieId: movieId, userId})
      .then(result => result);
 };
-const deleteCast = (id) => {
-  return mdb.collection('Cast')
-     .deleteOne({id: Number(id)})
-     .then(result => result);
-};
+
 const addMovies = (form, casts) => {
-  return mdb.collection('Movies').count()
-  .then((count) => {
-    form.id = count + 1;
-    return mdb.collection('Movies')
-     .insertOne(form)
-     .then(() => {
-       return mdb.collection('Cast').count()
-       .then(castCount => {
-         casts.forEach((cast) => {
-           cast.movieId = form.id;
-           cast.id = castCount;
-           castCount++;
-           return mdb.collection('Cast')
-              .insertOne(cast)
-              .then((result) => result);
-         });
-       });
-     });
-  });
+  form.casts = casts;
+  return mdb.collection('Movies')
+   .insertOne(form)
+   .then((result) => result);
 };
 const deleteMovie = (id) => {
   return mdb.collection('Movies')
-   .deleteOne({id: Number(id)})
-   .then(() => {
-     return mdb.collection('Cast')
-       .deleteMany({movieId: Number(id)})
-       .then((result) => result);
-   });
+   .deleteOne({_id: ObjectID(id)})
+   .then((result) => result);
+};
+const updateMovie = (id, form, casts) => {
+  form.casts = casts;
+  delete form._id;
+  return mdb.collection('Movies')
+   .updateOne({_id: ObjectID(id)}, {$set: form})
+   .then((result) => result);
+
 };
 export default {
   authenticate,
   findMovies,
   searchMovies,
   findMoviesById,
-  findCastByMovieId,
   rentMovie,
   checkRented,
-  deleteCast,
   addMovies,
-  deleteMovie
+  deleteMovie,
+  updateMovie
 };

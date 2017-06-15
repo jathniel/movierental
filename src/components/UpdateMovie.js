@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
 import { PropTypes } from 'prop-types';
-import AdminCast from './AdminCast';
 import ValidateInput from './ValidateInput';
 import ValidateInputNumber from './ValidateInputNumber';
+import AdminCast from './AdminCast';
 import * as api from '../api';
 class UpdateMovie extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      castIndex: 0,
-      castCollection: props.form.cast,
+      castCollection: props.form.casts,
       form: props.form,
       error: {}
     };
@@ -22,20 +21,15 @@ class UpdateMovie extends Component {
   addCast = (event) => {
     event.preventDefault();
     let data = this.state.castCollection;
-    data.push({
-      id: this.state.castIndex,
-      name: this.state.form.cast
-    });
+    data.push(this.state.form.cast);
 
     this.setState({
-      castIndex: this.state.castIndex + 1,
       castCollection: data,
       cast: ''
     });
   }
-  deleteCastById = (id) => {
+  deleteCastById = (index) => {
     let state = this.state;
-    let index = state.castCollection.findIndex(data => data.id == id);
     state.castCollection.splice(index, 1);
     this.setState(state);
   };
@@ -47,9 +41,9 @@ class UpdateMovie extends Component {
   };
   submitForm = (event) => {
     event.preventDefault();
-    api.addMovie(this.state.form, this.state.castCollection)
+    api.updateMovie(this.state._id, this.state.form, this.state.castCollection)
     .then(() => {
-      this.props.getMovieList();
+      this.props.updateMovie(this.state.form);
     });
   }
   render() {
@@ -112,14 +106,14 @@ class UpdateMovie extends Component {
           </div>
           <div className="form-group">
             <p>Cast</p>
-            {this.state.castCollection.map(cast =>
-              <AdminCast key={cast.id} className="movie-cast" handleClick={this.deleteCastById} {...cast} />
+            {this.state.castCollection.map((cast, index) =>
+              <AdminCast key={index} id={index} name={cast} handleClick={this.deleteCastById}/>
             )}
             <input type="text" name="cast" value={this.state.form.cast} onChange={this.handleChange} className="form-control" placeholder="Enter Cast names"/>
           </div>
-          <button onClick={this.addCast} className="btn btn-primary btn-lg btn-block margin-top10">ADD Cast</button>
+          <button onClick={this.addCast} className="btn btn-primary btn-lg btn-block margin-top10">ADD CAST</button>
           <hr/>
-          <button type="submit" className="btn btn-primary btn-lg btn-block margin-top10">ADD MOVIE</button>
+          <button type="submit" className="btn btn-primary btn-lg btn-block margin-top10">UPDATE MOVIE</button>
         </form>
       </div>
     );
@@ -127,7 +121,8 @@ class UpdateMovie extends Component {
 }
 UpdateMovie.propTypes = {
   getMovieList: PropTypes.func.isRequired,
-  form: PropTypes.object.isRequired
+  form: PropTypes.object.isRequired,
+  updateMovie: PropTypes.func.isRequired
 
 };
 export default UpdateMovie;

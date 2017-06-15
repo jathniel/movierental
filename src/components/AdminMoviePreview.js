@@ -1,14 +1,12 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import AdminCast from './AdminCast';
+
 
 const AdminMoviePreview = (props) => {
-  const deleteCast = (id) => {
-    props.deleteCastById(id);
-  };
+
   const deleteMovie =(e) => {
     e.preventDefault();
-    props.deleteMovie(props.id);
+    props.deleteMovie(props._id);
   };
 
   return(
@@ -29,8 +27,10 @@ const AdminMoviePreview = (props) => {
       <p><strong>Synopsis: </strong>{props.synopsis}</p>
       <hr/>
       <p><strong>Cast:</strong></p>
-      {props.cast.map(cast =>
-        <AdminCast key={cast._id} className="movie-cast" handleClick={deleteCast} {...cast} />
+      {props.casts.map((cast, index) =>
+        <div key={index} className="cast-preview">
+          <span>{cast}</span>
+        </div>
       )}
     </div>
   );
@@ -40,9 +40,9 @@ AdminMoviePreview.propTypes = {
   quantity: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
   synopsis: PropTypes.string.isRequired,
-  year: PropTypes.string.isRequired,
+  year: PropTypes.number.isRequired,
   director: PropTypes.string.isRequired,
-  cast: PropTypes.array.isRequired,
+  casts: PropTypes.array.isRequired,
   updateMovie: PropTypes.func.isRequired
 };
 export default AdminMoviePreview;

@@ -58,13 +58,7 @@ class Admin extends Component {
       console.error(e);
     });
   };
-  deleteCast = (id) => {
-    return api.deleteCast(id)
-    .then(result => result)
-    .catch((e) => {
-      console.error(e);
-    });
-  }
+
   handleClick = (id) => {
     this.getMovieDescription(id)
     .then(resp => {
@@ -72,7 +66,7 @@ class Admin extends Component {
         addMovie: false,
         selectedMovie: resp,
         viewMovie: true,
-        updateMovie: false
+        isUpdate: false
       });
     })
     .catch((e) => {
@@ -84,30 +78,22 @@ class Admin extends Component {
       addMovie: false,
       selectedMovie: null,
       viewMovie: false,
-      updateMovie: false
+      isUpdate: false
     });
   };
-  deleteCastById = (id) => {
-    this.deleteCast(id)
-    .then(() => {
-      let state = this.state.selectedMovie;
-      let index = state.cast.findIndex(data => data.id == id);
-      state.cast.splice(index, 1);
-      this.setState(state);
-    });
-  };
+
   addMovie = () => {
     this.setState({
       addMovie: true,
       selectedMovie: null,
-      viewMovie: true,
-      updateMovie: false
+      viewMovie: false,
+      isUpdate: false
     });
   }
   deleteMovie =(id) => {
     api.deleteMovie(id)
     .then(()=> {
-      this.setState({selectedMovie:null});
+      this.setState({selectedMovie:null, viewMovie: false});
       this.getMovieList();
     });
   }
@@ -116,8 +102,18 @@ class Admin extends Component {
     this.setState({
       addMovie: false,
       viewMovie: false,
-      updateMovie: true
+      isUpdate: true
     });
+
+  }
+  handleUpdate =(form) => {
+    this.setState({
+      selectedMovie: form,
+      isUpdate: false,
+      addMovie: false,
+      viewMovie: true
+    });
+    this.getMovieList();
   }
   render() {
     return (
@@ -132,9 +128,9 @@ class Admin extends Component {
             <ReactScrollPagination fetchFunc={this.updateLimit}/>
           </div>
           <div className="col-xs-12 col-sm-6 col-md-5 admin-movie-description">
-          {this.state.viewMovie ? <AdminMoviePreview {...this.state.selectedMovie} deleteCastById={this.deleteCastById} deleteMovie={this.deleteMovie} updateMovie={this.updateMovie}/> : null}
+          {this.state.viewMovie ? <AdminMoviePreview {...this.state.selectedMovie} deleteMovie={this.deleteMovie} updateMovie={this.updateMovie}/> : null}
           {this.state.addMovie ? <AddMovie getMovieList={this.getMovieList}/> : null}
-          {this.state.updateMovie ? <UpdateMovie form={this.state.selectedMovie} getMovieList={this.getMovieList}/> :null}
+          {this.state.isUpdate ? <UpdateMovie form={this.state.selectedMovie} getMovieList={this.getMovieList} updateMovie={this.handleUpdate} /> :null}
           </div>
         </div>
       </div>
