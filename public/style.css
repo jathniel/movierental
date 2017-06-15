@@ -4,6 +4,10 @@
 body {
   background-color: #fafafa; }
 
+.error-wrapper {
+  padding: 10px;
+  color: #ff0000; }
+
 .header {
   padding: 15px; }
   .header.stick-top {

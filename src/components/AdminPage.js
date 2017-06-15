@@ -22,7 +22,7 @@ class Admin extends Component {
   getMovieList = () => {
     return api.getMovieList()
     .then((result) => {
-      this.setState({movielist: result});
+      this.setState({movielist: result, addMovie: false});
     })
     .catch((e) => {
       console.error(e);
@@ -124,7 +124,7 @@ class Admin extends Component {
             search={this.state.search}
             handleSearch={this.handleSearch}/>
             <div className="add-movie__button" onClick={this.addMovie}><i className="fa fa-plus" aria-hidden="true"></i>Add Movie</div>
-            <MovieList movies={this.state.movielist} handleClick={this.handleClick}/>
+            <MovieList movies={this.state.movielist}  handleClick={this.handleClick}/>
             <ReactScrollPagination fetchFunc={this.updateLimit}/>
           </div>
           <div className="col-xs-12 col-sm-6 col-md-5 admin-movie-description">

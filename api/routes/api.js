@@ -64,8 +64,7 @@ apiRouter.post('/movies', (req, res)=> {
 });
 apiRouter.post('/movies/add', (req, res)=> {
   const form = req.body.form;
-  const cast = req.body.cast;
-  model.addMovies(form, cast)
+  model.addMovies(form)
   .then(result => {
     res.status(200).send(result);
   })
@@ -100,8 +99,7 @@ apiRouter.delete('/movies/:id', (req, res) => {
 apiRouter.put('/movies/:id', (req, res)=> {
   if(req.params.id) {
     const form = req.body.form;
-    const cast = req.body.cast;
-    model.updateMovie(req.params.id, form, cast)
+    model.updateMovie(req.params.id, form)
     .then(result => {
       res.status(200).send(result);
     })

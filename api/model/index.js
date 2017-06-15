@@ -44,8 +44,7 @@ const checkRented = (movieId, userId) => {
      .then(result => result);
 };
 
-const addMovies = (form, casts) => {
-  form.casts = casts;
+const addMovies = (form) => {
   return mdb.collection('Movies')
    .insertOne(form)
    .then((result) => result);
@@ -55,9 +54,7 @@ const deleteMovie = (id) => {
    .deleteOne({_id: ObjectID(id)})
    .then((result) => result);
 };
-const updateMovie = (id, form, casts) => {
-  form.casts = casts;
-  delete form._id;
+const updateMovie = (id, form) => {
   return mdb.collection('Movies')
    .updateOne({_id: ObjectID(id)}, {$set: form})
    .then((result) => result);

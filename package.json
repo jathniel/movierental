@@ -41,6 +41,7 @@
     "eslint": "^3.19.0",
     "eslint-plugin-react": "^7.0.1",
     "nodemon": "^1.11.0",
+    "valuelink": "^1.5.2",
     "webpack": "^2.6.1"
   }
 }

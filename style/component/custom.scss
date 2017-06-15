@@ -1,11 +1,19 @@
 * {
   font-family: 'Helvetica Neue';
 }
+
 body {
   background-color: #fafafa;
 }
+
+.error-wrapper {
+  padding: 10px;
+  color: #ff0000;
+}
+
 .header {
   padding: 15px;
+
   &.stick-top {
     position: fixed;
     width: 100%;

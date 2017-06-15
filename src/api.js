@@ -24,15 +24,15 @@ export const deleteCast = (castId) => {
   return axios.delete(`/api/cast/${castId}`)
               .then(resp => resp.data);
 };
-export const addMovie = (form, cast) => {
-  return axios.post('/api/movies/add', {form, cast})
+export const addMovie = (form) => {
+  return axios.post('/api/movies/add', {form})
               .then(resp => resp.data);
 };
 export const deleteMovie = (id) => {
   return axios.delete(`/api/movies/${id}`)
               .then(resp => resp.data);
 };
-export const updateMovie = (id, form, cast) => {
-  return axios.put(`/api/movies/${id}`, {form, cast})
+export const updateMovie = (id, form) => {
+  return axios.put(`/api/movies/${id}`, {form})
               .then(resp => resp.data);
 };

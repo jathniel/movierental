@@ -6,7 +6,7 @@ const MovieList = ({ movies, handleClick }) => {
   return(
     <div>
       {movies.map(movie =>
-        <MovieListPreview key={movie._id} handleClick={handleClick} {...movie}/>
+        <MovieListPreview key={movie._id}  handleClick={handleClick} {...movie}/>
       )}
     </div>
   );
