@@ -38,7 +38,7 @@ MongoClient.connect(config.mongodbUri, (err, db) => {
         'image': '/images/movies/1.jpg',
         'synopsis' : 'When some footage dating back to 1976 is discovered, the case of the haunted house in Amityville is reopened. An ambitious woman who is working as a television news intern seizes the opportunity to advance her career and is soon leading a team of journalists, clergymen, and paranormal researchers into the house, but she may have unwittingly opened a door to the unreal that she will never be able to close.',
         'director': 'Franck Khalfoun',
-        'year': '2017',
+        'year': 2017,
         'quantity': 10
       },
       {
@@ -47,7 +47,7 @@ MongoClient.connect(config.mongodbUri, (err, db) => {
         'image': '/images/movies/2.jpg',
         'synopsis' : 'Retired super-assassin John Wick\'s plans to resume a quiet civilian life are cut short when Italian gangster Santino D\'Antonio shows up on his doorstep with a gold marker, compelling him to repay past favors. Ordered by Winston, kingpin of secret assassin society The Continental, to respect the organization\'s ancient code, Wick reluctantly accepts the assignment to travel to Rome to take out D\'Antonio\'s sister, the ruthless capo atop the Italian Camorra crime syndicate.',
         'director': 'Chad Stahelski',
-        'year': '2017',
+        'year': 2017,
         'quantity': 10
       },
       {
@@ -56,7 +56,7 @@ MongoClient.connect(config.mongodbUri, (err, db) => {
         'image': '/images/movies/3.jpg',
         'synopsis' : 'Fueled by his restored faith in humanity and inspired by Superman\'s (Henry Cavill) selfless act, Bruce Wayne (Ben Affleck) enlists newfound ally Diana Prince to face an even greater threat. Together, Batman and Wonder Woman work quickly to recruit a team to stand against this newly awakened enemy. Despite the formation of an unprecedented league of heroes -- Batman, Wonder Woman, Aquaman, Cyborg and the Flash -- it may be too late to save the planet from an assault of catastrophic proportions.',
         'director': 'Zack Snyder',
-        'year': '2017',
+        'year': 2017,
         'quantity': 10
       },
       {
@@ -65,7 +65,8 @@ MongoClient.connect(config.mongodbUri, (err, db) => {
         'image': '/images/movies/4.jpg',
         'synopsis' : 'In the near future, a weary Logan (Hugh Jackman) cares for an ailing Professor X (Patrick Stewart) at a remote outpost on the Mexican border. His plan to hide from the outside world gets upended when he meets a young mutant (Dafne Keen) who is very much like him. Logan must now protect the girl and battle the dark forces that want to capture her.',
         'director': 'James Mangold',
-        'year': '2017'
+        'year': 2017,
+        'quantity': 10
       },
       {
         'id': 5,
@@ -73,7 +74,7 @@ MongoClient.connect(config.mongodbUri, (err, db) => {
         'image': '/images/movies/5.jpg',
         'synopsis' : 'Nick Morton is a soldier of fortune who plunders ancient sites for timeless artifacts and sells them to the highest bidder. When Nick and his partner come under attack in the Middle East, the ensuing battle accidentally unearths Ahmanet, a betrayed Egyptian princess who was entombed under the desert for thousands of years. With her powers constantly evolving, Morton must now stop the resurrected monster as she embarks on a furious rampage through the streets of London.',
         'director': 'Alex Kurtzman',
-        'year': '2017',
+        'year': 2017,
         'quantity': 10
       },
       {
@@ -82,7 +83,7 @@ MongoClient.connect(config.mongodbUri, (err, db) => {
         'image': '/images/movies/6.jpg',
         'synopsis' : 'Capt. Jack Sparrow (Johnny Depp) arrives at Port Royal in the Caribbean without a ship or crew. His timing is inopportune, however, because later that evening the town is besieged by a pirate ship. The pirates kidnap the governor\'s daughter, Elizabeth (Keira Knightley), who\'s in possession of a valuable coin that is linked to a curse that has transformed the pirates into the undead. A gallant blacksmith (Orlando Bloom) in love with Elizabeth allies with Sparrow in pursuit of the pirates.',
         'director': 'Gore Verbinski',
-        'year': '2013',
+        'year': 2013,
         'quantity': 10
       },
       {
@@ -91,7 +92,7 @@ MongoClient.connect(config.mongodbUri, (err, db) => {
         'image': '/images/movies/7.jpg',
         'synopsis' : 'The fate of humanity is at stake when two races of robots, the good Autobots and the villainous Decepticons, bring their war to Earth. The robots have the ability to change into different mechanical objects as they seek the key to ultimate power. Only a human youth, Sam Witwicky (Shia LaBeouf) can save the world from total destruction.',
         'director': 'Michael Bay',
-        'year': '2017',
+        'year': 2017,
         'quantity': 10
       },
       {
@@ -100,7 +101,7 @@ MongoClient.connect(config.mongodbUri, (err, db) => {
         'image': '/images/movies/8.jpg',
         'synopsis' : 'The T-virus unleashed by the evil Umbrella Corp. has spread to every corner of the globe, infesting the planet with zombies, demons and monsters. Alice (Milla Jovovich), a former Umbrella employee turned rogue warrior, joins her friends on a last-chance mission to storm the company\'s headquarters located deep underneath what used to be Raccoon City. But the Red Queen (Ever Anderson) knows that Alice is coming, and the final battle will determine if the rest of mankind lives or dies.',
         'director': 'Paul W. S. Anderson',
-        'year': '2016',
+        'year': 2016,
         'quantity': 10
       }
     ])

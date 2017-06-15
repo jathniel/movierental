@@ -10,11 +10,12 @@ const AdminMoviePreview = (props) => {
     e.preventDefault();
     props.deleteMovie(props.id);
   };
+
   return(
     <div className="admin-preview">
     <div className="preview-buttons">
       <button className="btn btn-danger btn-lg" onClick={deleteMovie}>Delete</button>
-      <button className="btn btn-warning btn-lg">Update</button>
+      <button className="btn btn-warning btn-lg" onClick={props.updateMovie}>Update</button>
     </div>
       <div className="movie-title">
         {props.title}
@@ -41,6 +42,7 @@ AdminMoviePreview.propTypes = {
   synopsis: PropTypes.string.isRequired,
   year: PropTypes.string.isRequired,
   director: PropTypes.string.isRequired,
-  cast: PropTypes.array.isRequired
+  cast: PropTypes.array.isRequired,
+  updateMovie: PropTypes.func.isRequired
 };
 export default AdminMoviePreview;

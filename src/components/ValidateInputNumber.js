@@ -2,7 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 
 
-const ValidateInput = ({
+const ValidateInputNumber = ({
   name,
   placeholder,
   value,
@@ -19,7 +19,7 @@ const ValidateInput = ({
     return validate(event.target.value);
   };
   return(
-    <input type="text"
+    <input type="number"
     name={name}
     value={value}
     className='form-control'
@@ -28,10 +28,10 @@ const ValidateInput = ({
     />
   );
 };
-ValidateInput.propTypes = {
+ValidateInputNumber.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  value: PropTypes.string,
+  value: PropTypes.number,
   onChange: PropTypes.func.isRequired
 };
-export default ValidateInput;
+export default ValidateInputNumber;
