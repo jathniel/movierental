@@ -1,6 +1,9 @@
 # movierental
 express base movie rental site
+# Features
 
+..* Auto restart app using Nodemon
+..* React Base app
 # Installation
 do npm Install
 
