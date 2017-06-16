@@ -1,10 +1,12 @@
 # movierental
 express base movie rental site
+
 # feature
   * App uses React as framework
   * auto restart app using Nodemon.
   * admin can add update delete movies
   * user can rent movies and search
+
 # Installation
 do npm Install
 
