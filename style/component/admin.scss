@@ -23,6 +23,11 @@ $background-white: #fff;
     }
   }
 
+  .preview-image {
+    height: 140px;
+    width: 100px;
+  }
+
   .add-movie {
     &__button {
       background: darken($color-dark-green, 5%);

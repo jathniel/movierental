@@ -222,6 +222,9 @@ body {
   .admin .preview-buttons button {
     float: right;
     margin-right: 5px; }
+  .admin .preview-image {
+    height: 140px;
+    width: 100px; }
   .admin .add-movie__button {
     background: #30a96d;
     border-radius: 5px;

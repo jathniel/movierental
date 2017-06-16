@@ -1,7 +1,7 @@
 import express from 'express';
 import model from '../model';
-
-
+import multer from 'multer';
+import {ObjectID } from 'mongodb';
 const apiRouter = express.Router();
 
 apiRouter.get('/', (req, res) => {
@@ -127,5 +127,33 @@ apiRouter.put('/movies/:id', (req, res)=> {
   } else {
     res.status(404).send('failed');
   }
+});
+
+apiRouter.put('/movies/:id', (req, res)=> {
+  if(!req.session.user) {
+    res.status(403).send('failed');
+  }
+  if(req.params.id) {
+    const form = req.body.form;
+    model.updateMovie(req.params.id, form)
+    .then(result => {
+      res.status(200).send(result);
+    })
+    .catch((e) => res.status(403).send(e));
+  } else {
+    res.status(404).send('failed');
+  }
+});
+const storage = multer.diskStorage({
+  destination: './public/images/movies',
+  filename(req, file, cb) {
+    cb(null, `${ObjectID()}${file.originalname}`);
+  },
+});
+
+const upload = multer({ storage });
+apiRouter.post('/files', upload.single('file'), (req, res) => {
+  const file = req.file; // file passed from client
+  res.status(200).send(`/images/movies/${file.filename}`);
 });
 export default apiRouter;

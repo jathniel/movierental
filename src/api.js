@@ -36,3 +36,7 @@ export const updateMovie = (id, form) => {
   return axios.put(`/api/movies/${id}`, {form})
               .then(resp => resp.data);
 };
+export const uploadFile = (file) => {
+  return axios.post('/api/files', file)
+              .then(resp => resp.data);
+};

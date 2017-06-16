@@ -5,6 +5,7 @@ import TextInput from './TextInput';
 import FormTextArea from './TextArea';
 import AdminCast from './AdminCast';
 import * as api from '../api';
+import UploadFile from './UploadFile';
 class AddMovie extends LinkedComponent {
   constructor(props) {
     super(props);
@@ -55,6 +56,10 @@ class AddMovie extends LinkedComponent {
     .then(() => {
       this.props.getMovieList();
     });
+
+  }
+  updateImage = (img) => {
+    this.setState({image: img});
   }
   render() {
     const titleLink = Link.state(this, 'title')
@@ -91,9 +96,7 @@ class AddMovie extends LinkedComponent {
         <form noValidate onSubmit={checkSubmit}>
           <TextInput type="text" placeholder="title" className="form-control" valueLink={ titleLink }/>
           <div className="form-group">
-            <label className="btn btn-default btn-file margin-bottom10">
-                Browse <input type="file" className="hidden"/>
-            </label> Or
+            <UploadFile updateImage = {this.updateImage}/> Or
             <TextInput type="text" className="form-control" placeholder="Image Link" valueLink={ imageLink } />
           </div>
           <TextInput type="number" className="form-control" placeholder="Quantity" valueLink={ quantityLink } />
