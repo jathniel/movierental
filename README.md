@@ -1,7 +1,7 @@
 # movierental
 express base movie rental site
 
-##Installation
+# Installation
 do npm Install
 
 ```
@@ -14,7 +14,7 @@ After installation include this to ~/.bash-profile So that we can use commands o
 export PATH=$PATH:./node_modules/.bin
 ```
 
-##Running
+# Running
 First we need to Initialize the data.
 to Initialize Make sure that mongodb is Running by running `mongo` on seperate terminal
 then run
@@ -29,7 +29,7 @@ then Browse
 http://localhost:8080
 Credentials are in loadTestData.js
 
-##Running
+# Running
 ```
 npm test
 ```
