@@ -25,3 +25,4 @@ app.use(express.static('public'));
 app.listen(config.port, () => {
   console.info('Express listening on port ', config.port);
 });
+export default app;

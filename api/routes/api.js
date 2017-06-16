@@ -28,14 +28,18 @@ apiRouter.post('/login', (req, res) => {
 });
 
 apiRouter.get('/movies', (req, res) => {
-  model.findMovies()
-  .then(result => {
-    res.status(200).send(result);
-  })
-  .catch(() => res.status(403).send('failed'));
+  if(req.session.user) {
+    model.findMovies()
+    .then(result => {
+      res.status(200).send(result);
+    })
+    .catch(() => res.status(403).send('failed'));
+  } else {
+    res.status(403).send('failed');
+  }
 });
 apiRouter.get('/movies/:id', (req, res) => {
-  if(req.session.user.id) {
+  if(req.session.user) {
     model.findMoviesById(req.params.id)
     .then(result => {
       model.checkRented(req.params.id, req.session.user.id).then(rented => {
@@ -54,15 +58,22 @@ apiRouter.get('/movies/:id', (req, res) => {
   }
 });
 apiRouter.post('/movies', (req, res)=> {
-  const search = req.body.search;
-  const limit = req.body.limit;
-  model.searchMovies(search, limit)
-  .then(result => {
-    res.status(200).send(result);
-  })
-  .catch(() => res.status(403).send('failed'));
+  if(req.session.user) {
+    const search = req.body.search;
+    const limit = req.body.limit;
+    model.searchMovies(search, limit)
+    .then(result => {
+      res.status(200).send(result);
+    })
+    .catch(() => res.status(403).send('failed'));
+  } else {
+    res.status(403).send('failed');
+  }
 });
 apiRouter.post('/movies/add', (req, res)=> {
+  if(!req.session.user) {
+    res.status(403).send('failed');
+  }
   const form = req.body.form;
   model.addMovies(form)
   .then(result => {
@@ -71,6 +82,9 @@ apiRouter.post('/movies/add', (req, res)=> {
   .catch(() => res.status(403).send('failed'));
 });
 apiRouter.post('/rent', (req, res)=> {
+  if(!req.session.user) {
+    res.status(403).send('failed');
+  }
   const movieId = req.body.movieId;
   const user = req.session.user.id;
   const quantity = req.body.quantity - 1;
@@ -86,6 +100,9 @@ apiRouter.post('/rent', (req, res)=> {
 });
 
 apiRouter.delete('/movies/:id', (req, res) => {
+  if(!req.session.user) {
+    res.status(403).send('failed');
+  }
   if(req.params.id) {
     model.deleteMovie(req.params.id)
     .then(result => {
@@ -97,6 +114,9 @@ apiRouter.delete('/movies/:id', (req, res) => {
   }
 });
 apiRouter.put('/movies/:id', (req, res)=> {
+  if(!req.session.user) {
+    res.status(403).send('failed');
+  }
   if(req.params.id) {
     const form = req.body.form;
     model.updateMovie(req.params.id, form)

@@ -6,7 +6,8 @@
   "scripts": {
     "prerun": "babel-node loadTestData.js",
     "start": "nodemon --exec babel-node server.js --ignore public/",
-    "dev": "webpack -wd"
+    "dev": "webpack -wd",
+    "test": "mocha --timeout 10000 --compilers js:babel-core/register"
   },
   "repository": {
     "type": "git",
@@ -38,8 +39,11 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "chai": "^4.0.2",
+    "chai-http": "^3.0.0",
     "eslint": "^3.19.0",
     "eslint-plugin-react": "^7.0.1",
+    "mocha": "^3.4.2",
     "nodemon": "^1.11.0",
     "valuelink": "^1.5.2",
     "webpack": "^2.6.1"
