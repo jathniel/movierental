@@ -40,3 +40,11 @@ export const uploadFile = (file) => {
   return axios.post('/api/files', file)
               .then(resp => resp.data);
 };
+export const getMovieRating = (id) => {
+  return axios.get(`/api/movies/${id}/rating`)
+              .then(resp => resp.data);
+};
+export const rateMovie = (id,form) => {
+  return axios.post(`/api/movies/${id}/rating`, form)
+              .then(resp => resp.data);
+};

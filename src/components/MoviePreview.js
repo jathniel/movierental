@@ -1,19 +1,36 @@
 import React,{ Component } from 'react';
 import { PropTypes } from 'prop-types';
-
+import RateMovie from './RateMovie';
+import * as api from '../api';
 class MoviePreview extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      img: ''
+      img: '',
+      rating: 0
     };
   }
   componentDidMount() {
     this.setState({img:this.props.image});
+    this.getMovieRating(this.props._id);
+
   }
   componentWillReceiveProps(nextProps) {
     let image =nextProps.image;
     this.setState({img: image});
+  }
+  rateMovie = (rating) => {
+    let form = {rating: rating};
+    api.rateMovie(this.props._id, form)
+    .then(() => {
+      this.getMovieRating(this.props._id);
+    });
+  }
+  getMovieRating = (id) => {
+    api.getMovieRating(id)
+    .then(result => {
+      this.setState({rating: result.data});
+    });
   }
   render() {
     const rentMovie = (e) => {
@@ -40,9 +57,9 @@ class MoviePreview extends Component {
                 <img  src={this.state.img} onError={errorImage}/>
               </div>
               <div className="col-xs-12 col-sm-6">
+                <RateMovie rating = {this.state.rating} submitRating = {this.rateMovie}/>
                 <h2>{this.props.title}</h2>
                 <p className="margin-0"><strong>Available: </strong>{this.props.quantity}</p>
-                <p><strong>Rating: </strong>4.5</p>
                 <div>{rentButton()}</div>
                 <p className="margin-0"><strong>Directed By: </strong>{this.props.director}</p>
                 <p className="margin-0"><strong>Year: </strong>{this.props.year}</p>

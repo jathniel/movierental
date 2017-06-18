@@ -156,4 +156,29 @@ apiRouter.post('/files', upload.single('file'), (req, res) => {
   const file = req.file; // file passed from client
   res.status(200).send(`/images/movies/${file.filename}`);
 });
+apiRouter.get('/movies/:id/rating', (req, res) => {
+  if(!req.session.user) {
+    res.status(403).send('failed');
+  }
+  model.getMovieRating(req.params.id)
+  .then(result => {
+    res.status(200).send({data:result.toString()});
+  })
+  .catch((e) => res.status(403).send(e));
+});
+apiRouter.post('/movies/:id/rating', (req, res) => {
+  if(!req.session.user) {
+    res.status(403).send('failed');
+  }
+  let form = {
+    rating: req.body.rating,
+    movieId: req.params.id,
+    userId: req.session.user.id
+  };
+  model.rateMovie(form)
+  .then(result => {
+    res.status(200).send(result);
+  })
+  .catch((e) => res.status(403).send(e));
+});
 export default apiRouter;

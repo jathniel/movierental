@@ -60,6 +60,32 @@ const updateMovie = (id, form) => {
    .then((result) => result);
 
 };
+const getMovieRating = (movieId) => {
+  return mdb.collection('Rating')
+  .count({movieId})
+  .then(result => {
+    return mdb.collection('Rating')
+    .aggregate([{$match : {movieId}},
+      {$match : {movieId}},
+      {$group : {_id : null,
+        total : {$sum : '$rating'}
+      }
+      }]).toArray()
+      .then(sum => {
+        if(sum.length <= 0) {
+          return 0;
+        }
+        return (sum[0].total / result).toFixed(2);
+      });
+  });
+};
+const rateMovie = (form) => {
+  return mdb.collection('Rating')
+   .updateOne({userId: form.userId},
+      {$set: form},
+      {upsert:true})
+   .then((result) => result);
+};
 export default {
   authenticate,
   findMovies,
@@ -69,5 +95,7 @@ export default {
   checkRented,
   addMovies,
   deleteMovie,
-  updateMovie
+  updateMovie,
+  getMovieRating,
+  rateMovie
 };

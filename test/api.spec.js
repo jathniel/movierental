@@ -130,7 +130,59 @@ describe('Rent', () => {
     });
   });
 });
-
+describe('Rate Movie API', () => {
+  beforeEach((done) => {
+     agent
+     .post('/api/login')
+     .send({
+       username:'user1@gmail.com',
+       password: 'password123'
+     })
+     .end((err, res) => {
+       res.should.have.status(200);
+       done();
+     })
+  });
+  describe('Rent API', () => {
+    it('should list ALL Movies on /api/movies GET', (done) => {
+      agent
+        .get('/api/movies')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.an.array;
+          movieId = res.body[0]._id;
+          done();
+        });
+    });
+    it('should list a SINGLE Movie on /api/movies/<id> GET', (done) => {
+      agent
+        .get(`/api/movies/${movieId}`)
+        .end((err, res) => {
+          res.should.have.status(200);
+          done();
+        });
+    });
+    it('should get the Rate of the Movie on /api/movies/<id>/rating GET', (done) => {
+      agent
+        .get(`/api/movies/${movieId}/rating`)
+        .end((err, res) => {
+          res.should.have.status(200);
+          done();
+        });
+    });
+    it('should Rate a  Movie on /api/movies/<id>/rating POST', (done) => {
+      agent
+        .post(`/api/movies/${movieId}/rating`)
+        .send({
+          rating: 5
+        })
+        .end((err, res) => {
+          res.should.have.status(200);
+          done();
+        });
+    });
+  });
+});
 describe('Access to Movies without login', () => {
 
   describe('Movies API', () => {

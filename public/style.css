@@ -209,6 +209,11 @@ body {
       .movie .movie-preview__image img {
         max-width: 100%;
         width: 300px; }
+  .movie-rating {
+    float: right;
+    text-align: center; }
+    .movie-rating__rate {
+      font-size: 1.5em; }
 
 .admin {
   background: #f9fafb; }
