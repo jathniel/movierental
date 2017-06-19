@@ -1,9 +1,13 @@
-
+$body-background: #fafafa;
 $container-background: #ebebeb;
 $color-black: #333;
 $color-white: #fff;
 $color-green: #3cc782;
 $color-dark-green: #36bd7a;
+$color-red: #ed4337;
+$btn-background: #e50914;
+$footer-background: #283645;
+$footer-color: #707e8c;
 
 @import 'component/custom';
 @import 'component/login';

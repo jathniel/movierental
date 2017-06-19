@@ -22,6 +22,9 @@ app.set('view engine', 'ejs');
 app.use('/api', apiRouter);
 app.use('/', router);
 app.use(express.static('public'));
+app.use(function(req, res){
+  res.render('404.ejs');
+});
 app.listen(config.port, () => {
   console.info('Express listening on port ', config.port);
 });
