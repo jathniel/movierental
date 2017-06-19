@@ -1,5 +1,5 @@
 # movierental
-express base movie rental site
+Movie Rental app built on ExpressJS, MongoDB, React and Sass
 
 # feature
   * App uses React as framework
