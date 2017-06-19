@@ -26,7 +26,6 @@ apiRouter.post('/login', (req, res) => {
     res.send('failed');
   }
 });
-
 apiRouter.get('/movies', (req, res) => {
   if(req.session.user) {
     model.findMovies()

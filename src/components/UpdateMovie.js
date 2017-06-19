@@ -37,7 +37,7 @@ class UpdateMovie extends LinkedComponent {
   addCast = (event) => {
     event.preventDefault();
     let data = this.state.castCollection;
-    data.push(this.state.form.cast);
+    data.push(this.state.cast);
 
     this.setState({
       castCollection: data,
